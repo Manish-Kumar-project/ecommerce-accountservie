@@ -3,8 +3,10 @@ package com.ecommerce.accountservice.service;
 import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.Entities.IdentityProof;
 import com.ecommerce.accountservice.Entities.Member;
+import com.ecommerce.accountservice.modles.AddressModel;
 import com.ecommerce.accountservice.repository.AddressRepository;
 import com.ecommerce.accountservice.repository.MemberRepository;
+import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,9 @@ public class MemberService {
 
     @Autowired
     private AddressRepository addressRepository;
+
+    @Autowired
+    private MemberRepositoryImp memberRepositoryImp;
 
     public Member saveMember(Member member) {
         Member member1 = new Member();
@@ -102,6 +107,9 @@ public class MemberService {
         //    addressRepository.saveAll(addresses);
         memberRepository.save(member1);
 
+    }
+    public List<AddressModel> getAllAddress(Integer memberId){
+        return memberRepositoryImp.getAllAddress(memberId);
     }
 }
 

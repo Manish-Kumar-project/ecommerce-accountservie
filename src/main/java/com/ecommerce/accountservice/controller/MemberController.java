@@ -3,11 +3,13 @@ package com.ecommerce.accountservice.controller;
 import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.Entities.IdentityProof;
 import com.ecommerce.accountservice.Entities.Member;
+import com.ecommerce.accountservice.modles.AddressModel;
 import com.ecommerce.accountservice.modles.MemberModel;
 import com.ecommerce.accountservice.repository.MemberRepository;
 import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
 import com.ecommerce.accountservice.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +49,10 @@ public class MemberController {
     public List<MemberModel> getAll(){
         List<MemberModel> memberModels = memberRepositoryImp.memberQuery();
         return memberModels;
+    }
+    @GetMapping(value = "/member/address")
+    public ResponseEntity<List<AddressModel>> getAllAddress(Integer memberId){
+        List<AddressModel> addressModels = memberService.getAllAddress(233);
+        return new ResponseEntity<List<AddressModel>>(addressModels, HttpStatus.OK);
     }
 }

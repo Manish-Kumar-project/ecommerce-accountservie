@@ -1,5 +1,7 @@
 package com.ecommerce.accountservice.repository.impl;
 
+import com.ecommerce.accountservice.Entities.Address;
+import com.ecommerce.accountservice.modles.AddressModel;
 import com.ecommerce.accountservice.modles.MemberModel;
 import com.ecommerce.accountservice.repository.Mappers.ConvertTupletoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,23 @@ public class MemberRepositoryImp {
         tuples = (List<Tuple>) query.getResultList();
         List<MemberModel> memberModel = tuples.stream().map(ConvertTupletoModel::convertToMemberModel).collect(Collectors.toList());
         return memberModel;
+    }
+    public List<AddressModel> getAllAddress(Integer memberId) {
+        List<Tuple> tuples = new ArrayList<>();
+
+        StringBuilder selectQuery = new StringBuilder();
+        StringBuilder fromQuery = new StringBuilder();
+        StringBuilder whereQuery = new StringBuilder();
+
+        selectQuery.append("select addr.city,addr.colony,addr.pin_code,addr.area,addr.street");
+        fromQuery.append(" from testdb.member mem JOIN testdb.address addr ON mem.id = addr.id_address where mem.id = 233");
+
+
+        Query query = entityManager.createNativeQuery(selectQuery.toString()
+                .concat(fromQuery.toString()
+                        .concat(whereQuery.toString())), Tuple.class);
+        tuples = (List<Tuple>) query.getResultList();
+        List<AddressModel> addressModel = tuples.stream().map(ConvertTupletoModel::convertToAddressModel).collect(Collectors.toList());
+        return addressModel;
     }
 }
