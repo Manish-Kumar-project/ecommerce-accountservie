@@ -4,6 +4,7 @@ import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.Entities.IdentityProof;
 import com.ecommerce.accountservice.Entities.Member;
 import com.ecommerce.accountservice.modles.AddressModel;
+import com.ecommerce.accountservice.modles.IdentityProofModel;
 import com.ecommerce.accountservice.modles.MemberModel;
 import com.ecommerce.accountservice.repository.MemberRepository;
 import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
@@ -54,5 +55,10 @@ public class MemberController {
     public ResponseEntity<List<AddressModel>> getAllAddress(Integer memberId){
         List<AddressModel> addressModels = memberService.getAllAddress(233);
         return new ResponseEntity<List<AddressModel>>(addressModels, HttpStatus.OK);
+    }
+    @GetMapping(value = "/member/idproof")
+    public ResponseEntity<List<IdentityProofModel>> getAllIdProofs(Integer memberId){
+        List<IdentityProofModel> identityProofModels = memberService.getAllIdProofs(233);
+        return new ResponseEntity<List<IdentityProofModel>>(identityProofModels, HttpStatus.OK);
     }
 }

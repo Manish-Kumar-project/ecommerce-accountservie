@@ -2,6 +2,7 @@ package com.ecommerce.accountservice.repository.impl;
 
 import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.modles.AddressModel;
+import com.ecommerce.accountservice.modles.IdentityProofModel;
 import com.ecommerce.accountservice.modles.MemberModel;
 import com.ecommerce.accountservice.repository.Mappers.ConvertTupletoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,23 @@ public class MemberRepositoryImp {
         tuples = (List<Tuple>) query.getResultList();
         List<AddressModel> addressModel = tuples.stream().map(ConvertTupletoModel::convertToAddressModel).collect(Collectors.toList());
         return addressModel;
+    }
+    public List<IdentityProofModel> getAllIdProofs(Integer memberId) {
+        List<Tuple> tuples = new ArrayList<>();
+
+        StringBuilder selectQuery = new StringBuilder();
+        StringBuilder fromQuery = new StringBuilder();
+        StringBuilder whereQuery = new StringBuilder();
+
+        selectQuery.append("select idproof.id_number,idproof.type_of_proof");
+        fromQuery.append(" from testdb.member mem JOIN testdb.identity_proof idproof ON mem.id = idproof.proof_id where mem.id = 233");
+
+
+        Query query = entityManager.createNativeQuery(selectQuery.toString()
+                .concat(fromQuery.toString()
+                        .concat(whereQuery.toString())), Tuple.class);
+        tuples = (List<Tuple>) query.getResultList();
+        List<IdentityProofModel> identityProofModel = tuples.stream().map(ConvertTupletoModel::convertToIdentityProofModel).collect(Collectors.toList());
+        return identityProofModel;
     }
 }

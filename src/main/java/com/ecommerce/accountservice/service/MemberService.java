@@ -4,6 +4,7 @@ import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.Entities.IdentityProof;
 import com.ecommerce.accountservice.Entities.Member;
 import com.ecommerce.accountservice.modles.AddressModel;
+import com.ecommerce.accountservice.modles.IdentityProofModel;
 import com.ecommerce.accountservice.repository.AddressRepository;
 import com.ecommerce.accountservice.repository.MemberRepository;
 import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
@@ -110,6 +111,9 @@ public class MemberService {
     }
     public List<AddressModel> getAllAddress(Integer memberId){
         return memberRepositoryImp.getAllAddress(memberId);
+    }
+    public List<IdentityProofModel> getAllIdProofs(Integer memberId){
+        return memberRepositoryImp.getAllIdProofs(memberId);
     }
 }
 

@@ -2,6 +2,7 @@ package com.ecommerce.accountservice.repository.Mappers;
 
 import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.modles.AddressModel;
+import com.ecommerce.accountservice.modles.IdentityProofModel;
 import com.ecommerce.accountservice.modles.MemberModel;
 
 import javax.persistence.Tuple;
@@ -53,5 +54,18 @@ public class ConvertTupletoModel {
             addressModel.setStreet(pinCode.toLowerCase());
         }
         return addressModel;
+    }
+    public static IdentityProofModel convertToIdentityProofModel(Tuple tuple) {
+        IdentityProofModel identityProofModel = new IdentityProofModel();
+        if (tuple.get("id_number") != null) {
+            String idNumber = (String) tuple.get("id_number");
+            identityProofModel.setIdNumber( idNumber);
+        }
+        if (tuple.get("type_of_proof") != null) {
+            String proofType = (String) tuple.get("type_of_proof");
+            identityProofModel.setTypeOfProof(proofType);
+        }
+
+        return identityProofModel;
     }
 }
