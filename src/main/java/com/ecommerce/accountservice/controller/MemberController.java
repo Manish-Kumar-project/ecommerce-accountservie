@@ -3,9 +3,7 @@ package com.ecommerce.accountservice.controller;
 import com.ecommerce.accountservice.Entities.Address;
 import com.ecommerce.accountservice.Entities.IdentityProof;
 import com.ecommerce.accountservice.Entities.Member;
-import com.ecommerce.accountservice.modles.AddressModel;
-import com.ecommerce.accountservice.modles.IdentityProofModel;
-import com.ecommerce.accountservice.modles.MemberModel;
+import com.ecommerce.accountservice.modles.*;
 import com.ecommerce.accountservice.repository.MemberRepository;
 import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
 import com.ecommerce.accountservice.service.MemberService;
@@ -60,5 +58,15 @@ public class MemberController {
     public ResponseEntity<List<IdentityProofModel>> getAllIdProofs(Integer memberId){
         List<IdentityProofModel> identityProofModels = memberService.getAllIdProofs(233);
         return new ResponseEntity<List<IdentityProofModel>>(identityProofModels, HttpStatus.OK);
+    }
+    @PostMapping(value = "member/update/address")
+    public ResponseEntity<String> updateMemberAddress(@RequestBody AddressRequest addressRequest){
+        String message = memberService.updateMemberAddress(addressRequest);
+        return new ResponseEntity<String>(message,HttpStatus.OK);
+    }
+    @PostMapping(value = "member/update/idproof")
+    public ResponseEntity<String> updateMemberIdentityProof(@RequestBody IdentityProofRequest identityProofRequest){
+        String message = memberService.updateMemberIdentityProof(identityProofRequest);
+        return new ResponseEntity<String>(message,HttpStatus.OK);
     }
 }
