@@ -6,7 +6,7 @@ import com.ecommerce.accountservice.Entities.Member;
 import com.ecommerce.accountservice.modles.*;
 import com.ecommerce.accountservice.repository.MemberRepository;
 import com.ecommerce.accountservice.repository.impl.MemberRepositoryImp;
-import com.ecommerce.accountservice.service.MemberService;
+import com.ecommerce.accountservice.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class MemberController {
     private MemberRepositoryImp memberRepositoryImp;
 
     @Autowired
-    private MemberService memberService;
+    private MemberServiceImpl memberService;
 
     @PostMapping(value = "/customer")
     public Member saveCustomer(@RequestBody Member member){

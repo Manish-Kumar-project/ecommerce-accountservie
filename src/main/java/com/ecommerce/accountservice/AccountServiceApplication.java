@@ -15,8 +15,8 @@ import java.util.List;
 public class AccountServiceApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(AccountServiceApplication.class, args);
-		MemberRepository memberRepository =  configurableApplicationContext.getBean(MemberRepository.class);
+//		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(AccountServiceApplication.class, args);
+//		MemberRepository memberRepository =  configurableApplicationContext.getBean(MemberRepository.class);
 //		Member member = new Member();
 //		member.setFirstName("kane");
 //		member.setLastName("williamson");

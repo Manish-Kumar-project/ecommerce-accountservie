@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class MemberRepositoryImp {
+public class MemberRepositoryImp implements MemberRepositoryInterface{
     @Autowired
     private EntityManager entityManager;
 
